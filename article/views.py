@@ -41,7 +41,7 @@ class ArticleDetail(APIView):
     def get(self, request, article_id):
         try:
             article = Article.objects.get(id=article_id)
-            serializer = ArticleSerializer(article)
+            serializer = ArticleSerializer(article, context={'random': True})
             return Response({'article': [serializer.data]}, status.HTTP_200_OK)
         except:
             return Response({'error': 'Article with that ID does not exist'})

@@ -15,6 +15,10 @@ class ArticleSerializer(serializers.Serializer):
 
     def to_representation(self, obj):
         try:
+            if self.context.get('random'):
+                content = obj.content[:300] + "..."
+            else:
+                content =  obj.content
             if obj.optional_image and not self.context.get('random'):
                 optional_image = settings.BASE_URL + obj.optional_image.url
             else:
@@ -26,7 +30,7 @@ class ArticleSerializer(serializers.Serializer):
                 'publication_date': datetime.strftime(obj.publication_date, "%A, %B %d, %Y"),
                 'hero_image': settings.BASE_URL + obj.hero_image.url,
                 'optional_image': optional_image,
-                'content': obj.content
+                'content': content,
             }
         except Exception as e:
             print e
