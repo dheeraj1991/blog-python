@@ -4,7 +4,6 @@ from django.conf import settings
 
 
 urlpatterns = patterns('',
-
     # URL pattern to access urls provided in article app
     url(r'^articles/', include('article.urls')),
     url(r'^admin/', include(admin.site.urls)),

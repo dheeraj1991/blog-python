@@ -29,6 +29,7 @@ class ArticleList(generics.ListAPIView):
 
 
 class ArticleDetail(APIView):
+
     """
         Details of a single article based on its id 
     """
