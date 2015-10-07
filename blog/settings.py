@@ -116,4 +116,4 @@ REST_FRAMEWORK = {
     ]
 }
 
-BASE_URL = "http://localhost:8000"
+BASE_URL = "https://blog-article.herokuapp.com"
