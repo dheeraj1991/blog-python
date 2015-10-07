@@ -1,4 +1,6 @@
 from rest_framework import serializers
+from django.conf import settings
+from datetime import datetime
 
 from .models import Article
 import logging
@@ -13,17 +15,16 @@ class ArticleSerializer(serializers.Serializer):
 
     def to_representation(self, obj):
         try:
-            print obj.optional_image
-            if obj.optional_image:
-                optional_image = obj.optional_image.url
+            if obj.optional_image and not self.context.get('random'):
+                optional_image = settings.BASE_URL + obj.optional_image.url
             else:
-                optional_image = ""
+                optional_image = None
             return {
                 'id': obj.id,
                 'title': obj.title,
                 'author': obj.author,
-                'publication_date': obj.publication_date,
-                'hero_image': obj.hero_image.url,
+                'publication_date': datetime.strftime(obj.publication_date, "%A, %B %d, %Y"),
+                'hero_image': settings.BASE_URL + obj.hero_image.url,
                 'optional_image': optional_image,
                 'content': obj.content
             }

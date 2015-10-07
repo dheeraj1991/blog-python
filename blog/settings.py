@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'article',
-    'blog',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -116,3 +115,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+BASE_URL = "http://localhost:8000"
