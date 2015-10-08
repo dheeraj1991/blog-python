@@ -56,7 +56,7 @@ class RandomContent(APIView):
 
     def get(self, request):
         try:
-            articles = Article.objects.all()
+            articles = Article.objects.filter(publication_date__lt=datetime.date.today() + datetime.timedelta(days=1))
             count = len(articles) - 1
             image_list = []
             for i in range(3):
